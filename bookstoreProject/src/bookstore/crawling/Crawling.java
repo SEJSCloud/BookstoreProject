@@ -11,8 +11,8 @@ import org.jsoup.select.Elements;
 
 import bookstore.model.dto.BookDTO;
 
-public class BooksCrawling {
-	private static BooksCrawling instance = new BooksCrawling();
+public class Crawling {
+	private static Crawling instance = new Crawling();
 	private static ArrayList<BookDTO> booksList = new ArrayList<>();
 
 	public ArrayList<BookDTO> getBooksList() {
@@ -20,10 +20,10 @@ public class BooksCrawling {
 	}
 
 	public void setBooksList(ArrayList<BookDTO> reviewList) {
-		BooksCrawling.booksList = reviewList;
+		Crawling.booksList = reviewList;
 	}
 
-	public static BooksCrawling getInstance() {
+	public static Crawling getInstance() {
 		return instance;
 	}
 	

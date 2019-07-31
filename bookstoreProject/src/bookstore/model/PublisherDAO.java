@@ -21,14 +21,14 @@ public class PublisherDAO {
 		}
 	}
 	
-	public static boolean addPublisher(PublisherDTO Publisher) throws SQLException{
+	public static boolean addPublisher(PublisherDTO publisher) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.addquery"));
-			pstmt.setInt(1, Publisher.getPublisherId());
-			pstmt.setString(2, Publisher.getPublisherName());
+			pstmt.setInt(1, publisher.getPublisherId());
+			pstmt.setString(2, publisher.getPublisherName());
 			
 			int result = pstmt.executeUpdate();
 		
@@ -43,14 +43,14 @@ public class PublisherDAO {
 
 	//수정 로직
 	// 프로젝트 명으로 내용 수정하기
-	public static boolean updatePublisher(int PublisherId, String PublisherName) throws SQLException{
+	public static boolean updatePublisher(int PublisherId, String publisherName) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.updatequery"));
-			pstmt.setString(1, PublisherName);
+			pstmt.setString(1, publisherName);
 			pstmt.setInt(2, PublisherId);
 			
 			int result = pstmt.executeUpdate();
@@ -67,13 +67,13 @@ public class PublisherDAO {
 
 
 	//삭제 로직
-	public static boolean deletePublisher(int PublisherId) throws SQLException{
+	public static boolean deletePublisher(int publisherId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.deletequery"));
-			pstmt.setInt(1, PublisherId);
+			pstmt.setInt(1, publisherId);
 			int result = pstmt.executeUpdate();
 			if(result == 1){
 				return true;
@@ -84,7 +84,7 @@ public class PublisherDAO {
 		return false;
 	}
 
-	public static PublisherDTO getPublisher(String PublisherId) throws SQLException{
+	public static PublisherDTO getPublisher(int publisherId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -93,7 +93,7 @@ public class PublisherDAO {
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.getquery"));
-			pstmt.setString(1, PublisherId);
+			pstmt.setInt(1, publisherId);
 			rset = pstmt.executeQuery();
 			if(rset.next()){
 				Publisher = new PublisherDTO(rset.getInt(1), rset.getString(2));

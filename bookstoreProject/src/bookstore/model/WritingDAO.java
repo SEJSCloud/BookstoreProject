@@ -11,7 +11,7 @@ import java.util.Properties;
 import bookstore.model.util.DBUtil;
 
 public class WritingDAO {
-	
+
 	static Properties propertiesInfo = new Properties();
 	static {
 		try {
@@ -20,29 +20,51 @@ public class WritingDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	public static ArrayList<String> getWriteInfo(int bookId) throws SQLException{
+
+	public static ArrayList<String> getBookWriteInfo(int authorid) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<String> authorName = null;
-		
-		try{
+
+		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement(propertiesInfo.getProperty("select a.name from author a, writing w where a.autor_id=w.autor_id and book_id=?;"));
-//																	select a.name from author a, writing w where a.autor_id=w.autor_id and book_id=?;
-			pstmt.setInt(1, bookId);
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("WritingDAO.getBookWriteInfo"));
+
+			pstmt.setInt(1, authorid);
 			rset = pstmt.executeQuery();
-			
+
 			authorName = new ArrayList<String>();
-			if(rset.next()){
+			if (rset.next()) {
 				authorName.add(rset.getString(1));
 			}
-		}finally{
+		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return authorName;
 	}
-	
+
+	public static ArrayList<String> getAuthorWriteInfo(int bookId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<String> authorName = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("WritingDAO.getAuthorWriteInfo"));
+
+			pstmt.setInt(1, bookId);
+			rset = pstmt.executeQuery();
+
+			authorName = new ArrayList<String>();
+			if (rset.next()) {
+				authorName.add(rset.getString(1));
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return authorName;
+	}
 
 }

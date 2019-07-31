@@ -21,14 +21,14 @@ public class TranslatorDAO {
 		}
 	}
 	
-	public static boolean addTranslator(TranslatorDTO Translator) throws SQLException{
+	public static boolean addTranslator(TranslatorDTO translator) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatorDAO.addquery"));
-			pstmt.setInt(1, Translator.getTranslatorId());
-			pstmt.setString(2, Translator.getTranslatorName());
+			pstmt.setInt(1, translator.getTranslatorId());
+			pstmt.setString(2, translator.getTranslatorName());
 			
 			int result = pstmt.executeUpdate();
 		
@@ -43,15 +43,15 @@ public class TranslatorDAO {
 
 	//수정 로직
 	// 프로젝트 명으로 내용 수정하기
-	public static boolean updateTranslator(int TranslatorId, String TranslatorName) throws SQLException{
+	public static boolean updateTranslator(int translatorId, String translatorName) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatorDAO.updatequery"));
-			pstmt.setString(1, TranslatorName);
-			pstmt.setInt(2, TranslatorId);
+			pstmt.setString(1, translatorName);
+			pstmt.setInt(2, translatorId);
 			
 			int result = pstmt.executeUpdate();
 			if(result == 1){
@@ -67,13 +67,13 @@ public class TranslatorDAO {
 
 
 	//삭제 로직
-	public static boolean deleteTranslator(int TranslatorId) throws SQLException{
+	public static boolean deleteTranslator(int translatorId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatorDAO.deletequery"));
-			pstmt.setInt(1, TranslatorId);
+			pstmt.setInt(1, translatorId);
 			int result = pstmt.executeUpdate();
 			if(result == 1){
 				return true;
@@ -84,7 +84,7 @@ public class TranslatorDAO {
 		return false;
 	}
 
-	public static TranslatorDTO getTranslator(String TranslatorId) throws SQLException{
+	public static TranslatorDTO getTranslator(int translatorId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -93,7 +93,7 @@ public class TranslatorDAO {
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatorDAO.getquery"));
-			pstmt.setString(1, TranslatorId);
+			pstmt.setInt(1, translatorId);
 			rset = pstmt.executeQuery();
 			if(rset.next()){
 				Translator = new TranslatorDTO(rset.getInt(1), rset.getString(2));

@@ -85,7 +85,7 @@ public class BookDAO {
 		return false;
 	}
 
-	public static BookDTO getBook(String BookId) throws SQLException {
+	public static BookDTO getBook(int BookId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -94,7 +94,7 @@ public class BookDAO {
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.getquery"));
-			pstmt.setString(1, BookId);
+			pstmt.setInt(1, BookId);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				Book = new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4), rset.getInt(5),
@@ -126,4 +126,6 @@ public class BookDAO {
 		}
 		return list;
 	}
+	
+
 }
