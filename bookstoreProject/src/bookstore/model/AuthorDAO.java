@@ -21,14 +21,14 @@ public class AuthorDAO {
 		}
 	}
 	
-	public static boolean addAuthor(AuthorDTO Author) throws SQLException{
+	public static boolean addAuthor(AuthorDTO author) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.addquery"));
-			pstmt.setInt(1, Author.getAuthorId());
-			pstmt.setString(2, Author.getAuthorName());
+			pstmt.setInt(1, author.getAuthorId());
+			pstmt.setString(2, author.getAuthorName());
 			
 			int result = pstmt.executeUpdate();
 		
@@ -43,15 +43,15 @@ public class AuthorDAO {
 
 	//수정 로직
 	// 프로젝트 명으로 내용 수정하기
-	public static boolean updateAuthor(int AuthorId, String AuthorName) throws SQLException{
+	public static boolean updateAuthor(int authorId, String authorName) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.updatequery"));
-			pstmt.setString(1, AuthorName);
-			pstmt.setInt(2, AuthorId);
+			pstmt.setString(1, authorName);
+			pstmt.setInt(2, authorId);
 			
 			int result = pstmt.executeUpdate();
 			if(result == 1){
@@ -67,13 +67,13 @@ public class AuthorDAO {
 
 
 	//삭제 로직
-	public static boolean deleteAuthor(int AuthorId) throws SQLException{
+	public static boolean deleteAuthor(int authorId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.deletequery"));
-			pstmt.setInt(1, AuthorId);
+			pstmt.setInt(1, authorId);
 			int result = pstmt.executeUpdate();
 			if(result == 1){
 				return true;
@@ -84,7 +84,7 @@ public class AuthorDAO {
 		return false;
 	}
 
-	public static AuthorDTO getAuthor(String AuthorId) throws SQLException{
+	public static AuthorDTO getAuthor(int authorId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -93,7 +93,7 @@ public class AuthorDAO {
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.getquery"));
-			pstmt.setString(1, AuthorId);
+			pstmt.setInt(1, authorId);
 			rset = pstmt.executeQuery();
 			if(rset.next()){
 				Author = new AuthorDTO(rset.getInt(1), rset.getString(2));
@@ -123,4 +123,6 @@ public class AuthorDAO {
 		}
 		return list;
 	}
+	
+
 }

@@ -10,7 +10,7 @@ import java.util.Properties;
 
 import bookstore.model.util.DBUtil;
 
-public class WritingDAO {
+public class TranslatingDAO {
 	
 	static Properties propertiesInfo = new Properties();
 	static {
@@ -21,7 +21,7 @@ public class WritingDAO {
 		}
 	}
 	
-	public static ArrayList<String> getProbonoProject(int bookId) throws SQLException{
+	public static ArrayList<String> getAuthoTranslatingInfo(int bookId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -29,7 +29,8 @@ public class WritingDAO {
 		
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement(propertiesInfo.getProperty("select a.name from autor a, writing w where a.autor_id=w.autor_id and book_id=?;"));
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatingDAO.getAuthorTranslatingInfo"));
+
 			pstmt.setInt(1, bookId);
 			rset = pstmt.executeQuery();
 			
@@ -42,6 +43,30 @@ public class WritingDAO {
 		}
 		return authorName;
 	}
+	
+	public static ArrayList<String> getBookTranslatingInfo(int translatorid) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<String> authorName = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatingDAO.getBookTranslatingInfo"));
+
+			pstmt.setInt(1, translatorid);
+			rset = pstmt.executeQuery();
+			
+			authorName = new ArrayList<String>();
+			if(rset.next()){
+				authorName.add(rset.getString(1));
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return authorName;
+	}
+	
 	
 
 }
