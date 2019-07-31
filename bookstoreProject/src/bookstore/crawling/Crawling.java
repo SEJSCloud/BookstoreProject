@@ -120,3 +120,32 @@ public class Crawling {
 		getBooksCrawling();
 	}
 }
+
+
+//for (int i = 1; i <= 10; i++) {
+//	try {
+//		doc = Jsoup.connect(
+//				"https://www.aladin.co.kr/shop/common/wnew.aspx?ViewRowsCount=25&ViewType=Detail&SortOrder=6&page="
+//						+ i + "&BranchType=1&PublishDay=84")
+//				.get();
+//	} catch (IOException e) {
+//		e.printStackTrace();
+//	}
+//
+//	for (int j = 2; j <= 26; j++) {
+//		int a = 2;
+//		int b = 1;
+//		int c = 3;
+//
+//		newsHeadlines = doc.select("#Myform > div:nth-child(" + j
+//				+ ") > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1)");
+//		String ifStringMass = newsHeadlines.text();
+//		String ifSecondStringMass = ifStringMass.substring(0, ifStringMass.indexOf("]") + 1);
+//		if (newsHeadlines.text().contains("[") && ifSecondStringMass.length() > 5) {
+//			a = a + 1;
+//			b = b + 1;
+//			c = c + 1;
+//		}
+//
+//	}
+//}

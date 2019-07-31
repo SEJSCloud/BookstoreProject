@@ -13,8 +13,23 @@ public class BookDTO {
 	private int bookId;
 	private String title;
 	private String publishMonth;
-	private int price;
+	private String price;
 	private int discountRate;
 	private int publisherId;
+	
+	   @Override
+	   public String toString() {
+	      StringBuilder builder = new StringBuilder();
+	      builder.append("[title : ");
+	      builder.append(title);
+	      builder.append(", publishMonth : ");
+	      builder.append(publishMonth);
+	      builder.append(", price : ");
+	      builder.append(price);
+	      builder.append(", discountRate : ");
+	      builder.append(discountRate);
+	      builder.append("]\n");
+	      return builder.toString();
+	   }
 
 }

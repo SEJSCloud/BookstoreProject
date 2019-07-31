@@ -12,6 +12,7 @@ import bookstore.model.dto.BookDTO;
 import bookstore.model.util.DBUtil;
 
 public class BookDAO {
+	
 	static Properties propertiesInfo = new Properties();
 	static {
 		try {
@@ -27,12 +28,10 @@ public class BookDAO {
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.addquery"));
-			pstmt.setInt(1, Book.getBookId());
-			pstmt.setString(2, Book.getTitle());
-			pstmt.setString(3, Book.getPublishMonth());
-			pstmt.setInt(4, Book.getPrice());
-			pstmt.setInt(5, Book.getDiscountRate());
-			pstmt.setInt(6, Book.getPublisherId());
+			pstmt.setString(1, Book.getTitle());
+			pstmt.setString(2, Book.getPublishMonth());
+			pstmt.setString(3, Book.getPrice());
+			pstmt.setInt(4, Book.getDiscountRate());
 
 			int result = pstmt.executeUpdate();
 
@@ -97,7 +96,7 @@ public class BookDAO {
 			pstmt.setInt(1, BookId);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				Book = new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4), rset.getInt(5),
+				Book = new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),
 						rset.getInt(6));
 			}
 		} finally {
@@ -118,7 +117,7 @@ public class BookDAO {
 
 			list = new ArrayList<BookDTO>();
 			while (rset.next()) {
-				list.add(new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4), rset.getInt(5),
+				list.add(new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),
 						rset.getInt(6)));
 			}
 		} finally {
