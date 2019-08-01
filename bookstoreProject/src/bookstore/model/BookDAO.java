@@ -32,6 +32,7 @@ public class BookDAO {
 			pstmt.setString(2, Book.getPublishMonth());
 			pstmt.setString(3, Book.getPrice());
 			pstmt.setInt(4, Book.getDiscountRate());
+			pstmt.setString(5, Book.getTranslatorName());
 
 			int result = pstmt.executeUpdate();
 
@@ -97,7 +98,7 @@ public class BookDAO {
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				Book = new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),
-						rset.getInt(6));
+						rset.getInt(6), rset.getString(7));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -118,7 +119,7 @@ public class BookDAO {
 			list = new ArrayList<BookDTO>();
 			while (rset.next()) {
 				list.add(new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),
-						rset.getInt(6)));
+						rset.getInt(6), rset.getString(7)));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
