@@ -39,6 +39,26 @@ public class TranslatorDAO {
 		}
 		return false;
 	}
+	
+	public static boolean addTranslatorName(TranslatorDTO translator) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatorDAO.updatetranslatornamequery"));
+			pstmt.setString(1, translator.getTranslatorName());
+			pstmt.setString(2, translator.getTranslatorName());
+			
+			int result = pstmt.executeUpdate();
+		
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
 
 	//수정 로직
 	// 프로젝트 명으로 내용 수정하기

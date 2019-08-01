@@ -28,6 +28,7 @@ public class bookstoreCrawling {
 	Elements newsHeadlines4 = null;
 	Elements newsHeadlines5 = null;
 	ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
+	ArrayList<TranslatorDTO> translatorNameList = new ArrayList<TranslatorDTO>();
 	ArrayList<AuthorDTO> authorList = new ArrayList<AuthorDTO>();
 	ArrayList<PublisherDTO> publisherList = new ArrayList<PublisherDTO>();
 	ArrayList<TranslatorDTO> translatorList = new ArrayList<TranslatorDTO>();
@@ -104,18 +105,18 @@ public class bookstoreCrawling {
 					int idx = stringMass12.indexOf("(옮");
 					if(stringMass12.contains("지은이)")) {
 						int idx6 = stringMass12.indexOf("지은이)");
-						translatorName = stringMass12.substring(idx6+6, idx);
+						translatorName = stringMass12.substring(idx6+6, idx-1);
 						if(stringMass12.contains("엮은이)")) {
 							int idx7 = stringMass12.indexOf("엮은이)");
-							translatorName = stringMass12.substring(idx7+6, idx);
+							translatorName = stringMass12.substring(idx7+6, idx-1);
 							if(stringMass12.contains("그림)")) {
 								int idx8 = stringMass12.indexOf("그림)");
-								translatorName = stringMass12.substring(idx8+5, idx);
+								translatorName = stringMass12.substring(idx8+5, idx-1);
 							}
 						}
 						if(stringMass12.contains("그림)")) {
 							int idx9 = stringMass12.indexOf("그림)");
-							translatorName = stringMass12.substring(idx9+5, idx);
+							translatorName = stringMass12.substring(idx9+5, idx-1);
 						}
 					}
 				}else if(!stringMass12.contains("(옮")){
@@ -129,6 +130,69 @@ public class bookstoreCrawling {
 		}
 		return bookList;
 	}
+	
+	public ArrayList<TranslatorDTO> getTransLatorNameList(){
+		Document doc = null;
+		Elements newsHeadlines = null;
+		Elements newsHeadlines5 = null;
+		
+		for (int i = 1; i <= 10; i++) {
+			try {
+				doc = Jsoup.connect(
+						"https://www.aladin.co.kr/shop/common/wnew.aspx?ViewRowsCount=25&ViewType=Detail&SortOrder=6&page="
+								+ i + "&BranchType=1&PublishDay=84")
+						.get();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			for (int j = 2; j <= 26; j++) {
+				int d = 2;
+
+				newsHeadlines = doc.select("#Myform > div:nth-child(" + j
+						+ ") > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1)");
+				String ifStringMass = newsHeadlines.text();
+				String ifSecondStringMass = ifStringMass.substring(0, ifStringMass.indexOf("]") + 1);
+				if (newsHeadlines.text().contains("[") && ifSecondStringMass.length() > 5) {
+					d = d + 1;
+				}
+				newsHeadlines5 = doc.select("#Myform > div:nth-child(" + j
+						+ ") > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child("
+						+ d + ")");
+				
+				String stringMass12 = newsHeadlines5.text();
+				String translatorName = null;
+				if(stringMass12.contains("(옮")) {
+					int idx = stringMass12.indexOf("(옮");
+					if(stringMass12.contains("지은이)")) {
+						int idx1 = stringMass12.indexOf("지은이)");
+						translatorName = stringMass12.substring(idx1+6, idx-1);
+						if(stringMass12.contains("엮은이)")) {
+							int idx2 = stringMass12.indexOf("엮은이)");
+							translatorName = stringMass12.substring(idx2+6, idx-1);
+							if(stringMass12.contains("그림)")) {
+								int idx3 = stringMass12.indexOf("그림)");
+								translatorName = stringMass12.substring(idx3+5, idx-1);
+							}
+						}
+						if(stringMass12.contains("그림)")) {
+							int idx4 = stringMass12.indexOf("그림)");
+							translatorName = stringMass12.substring(idx4+5, idx-1);
+						}
+					}
+				}else if(!stringMass12.contains("(옮")){
+					translatorName = null;
+				}
+				
+				TranslatorDTO translator = new TranslatorDTO(0,translatorName);
+				translatorNameList.add(translator);
+			}
+		}
+		return translatorNameList;
+		
+	}
+		
+	
 	
 	public ArrayList<AuthorDTO> getAuthorList(){
 		

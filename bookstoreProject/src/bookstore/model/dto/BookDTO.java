@@ -33,4 +33,9 @@ public class BookDTO {
 	      return builder.toString();
 	   }
 
+	public BookDTO(String translatorName) {
+		super();
+		this.translatorName = translatorName;
+	}
+
 }

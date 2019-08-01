@@ -43,6 +43,10 @@ public class bookstoreService {
 	public boolean addBook(BookDTO book) throws SQLException {
 		return BookDAO.addBook(book);
 	}
+	
+//	public boolean addTranslatorName(BookDTO book) throws SQLException {
+//		return BookDAO.addTranslatorName(book);
+//	}
 
 	// 기존 book 수정
 	public boolean updateBook(int bookId, String bookName) throws SQLException, NotExistException {
@@ -101,6 +105,10 @@ public class bookstoreService {
 
 	public boolean addTranslator(TranslatorDTO translator) throws SQLException {
 		return TranslatorDAO.addTranslator(translator);
+	}
+	
+	public boolean addTranslatorName(TranslatorDTO translator) throws SQLException {
+		return TranslatorDAO.addTranslatorName(translator);
 	}
 
 	public boolean updateTranslator(int translatorId, String translatorName) throws SQLException, NotExistException {

@@ -53,6 +53,19 @@ public class BookstoreController {
 			EndView.showError("새로운 책 저장시 에러 발생");
 		}
 	}
+	
+//	public void addTranslatorName(BookDTO book) {
+//		try {
+//			if(service.addTranslatorName(book) == true) {
+//				SuccessView.showSuccess("새로운 번역가이름 저장 성공");
+//			}else {
+//				EndView.showError("새로운 번역가이름 저장 실패");
+//			}
+//		} catch (SQLException s) {
+//			s.printStackTrace();
+//			EndView.showError("새로운 번역가이름 저장시 에러 발생");
+//		}
+//	}
 
 	// 책 수정 로직
 	public void updateBook(int bookId, String bookName) {
@@ -169,6 +182,19 @@ public class BookstoreController {
 		} catch (Exception s) {
 			s.printStackTrace();
 			EndView.showError("새로운 번역가 저장시 에러 발생");
+		}
+	}
+	
+	public void addTranslatorName(TranslatorDTO translator) {
+		try {
+			if(service.addTranslatorName(translator) == true) {
+				SuccessView.showSuccess("새로운 번역가이름 저장 성공");
+			}else {
+				EndView.showError("새로운 번역가이름 저장 실패");
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+			EndView.showError("새로운 번역가이름 저장시 에러 발생");
 		}
 	}
 

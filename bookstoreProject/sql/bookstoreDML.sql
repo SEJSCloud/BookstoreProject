@@ -18,6 +18,6 @@
 --insert into probono_project values(probono_project_id_seq.nextval, '오드리햅번 프로젝트', 'audreyHepbun', 'giver2', 'receivePeople2', '무료컷팅');
 --insert into probono_project values(probono_project_id_seq.nextval, '키다리아저씨 프로젝트', 'schweitzer', 'giver3', 'receivePeople3', '장학금지원');
 
-insert into translator select translator_id_seq.nextval, tname from book where tname is not null;
+insert into translator select translator_id_seq.nextval, tname from (select distinct tname from book where tname is not null) where tname is not null;
 
 commit;

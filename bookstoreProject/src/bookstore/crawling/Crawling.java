@@ -244,18 +244,18 @@ public class Crawling {
 					int idx = stringMass.indexOf("(옮");
 					if(stringMass.contains("지은이)")) {
 						int idx1 = stringMass.indexOf("지은이)");
-						translatorName = stringMass.substring(idx1+6, idx);
+						translatorName = stringMass.substring(idx1+6, idx-1);
 						if(stringMass.contains("엮은이)")) {
 							int idx2 = stringMass.indexOf("엮은이)");
-							translatorName = stringMass.substring(idx2+6, idx);
+							translatorName = stringMass.substring(idx2+6, idx-1);
 							if(stringMass.contains("그림)")) {
 								int idx3 = stringMass.indexOf("그림)");
-								translatorName = stringMass.substring(idx3+5, idx);
+								translatorName = stringMass.substring(idx3+5, idx-1);
 							}
 						}
 						if(stringMass.contains("그림)")) {
 							int idx4 = stringMass.indexOf("그림)");
-							translatorName = stringMass.substring(idx4+5, idx);
+							translatorName = stringMass.substring(idx4+5, idx-1);
 						}
 					}
 				}else if(!stringMass.contains("(옮")){

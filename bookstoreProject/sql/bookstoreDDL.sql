@@ -14,31 +14,32 @@ DROP SEQUENCE book_id_seq;
 DROP SEQUENCE publisher_id_seq;
 DROP SEQUENCE author_id_seq;
 DROP SEQUENCE translator_id_seq;
+DROP SEQUENCE publisher_id2_seq;
 
 CREATE TABLE book (
-       book_id          	NUMBER ,
-       title               	VARCHAR2(200) ,
-       publishmonth         	VARCHAR2(200) ,
-       price                	VARCHAR2(200) ,
+       book_id          	NUMBER PRIMARY KEY ,
+       title               	VARCHAR2(200) NOT NULL,
+       publishmonth         	VARCHAR2(200) NOT NULL,
+       price                	VARCHAR2(200) NOT NULL,
        discountrate                	NUMBER ,
-       publisherid                	NUMBER ,
+       publisher_id                	NUMBER NOT NULL,
        tname                	VARCHAR2(200)
 );
 
 CREATE TABLE author (
-       author_id     		NUMBER,
-       aname                		VARCHAR2(300)
+       author_id     		NUMBER PRIMARY KEY ,
+       aname                		VARCHAR2(300) NOT NULL
 );
 
 
 CREATE TABLE publisher (
-       publisher_id               NUMBER ,
-       pname    			  VARCHAR2(200)
+       publisher_id               NUMBER PRIMARY KEY,
+       pname    			  VARCHAR2(200) NOT NULL
 );
 
 CREATE TABLE translator (
-       translator_id               NUMBER ,
-       tname     				 VARCHAR2(200)
+       translator_id               NUMBER PRIMARY KEY,
+       tname     				 VARCHAR2(200) NOT NULL
 );
 --
 --CREATE SEQUENCE probono_project_id_seq;
@@ -55,9 +56,9 @@ CREATE SEQUENCE book_id_seq;
 CREATE SEQUENCE publisher_id_seq;
 CREATE SEQUENCE author_id_seq;
 CREATE SEQUENCE translator_id_seq;
-
+CREATE SEQUENCE publisher_id2_seq;
 
   
---ALTER TABLE probono_project  ADD FOREIGN KEY (receive_id) REFERENCES recipient  (recipient_id);
+--ALTER TABLE book  ADD FOREIGN KEY (publisher_id) REFERENCES publisher  (publisher_id);
 --ALTER TABLE probono_project ADD FOREIGN KEY (activist_id)  REFERENCES activist  (activist_id);
 --ALTER TABLE probono_project ADD FOREIGN KEY (probono_id) REFERENCES probono  (probono_id);
