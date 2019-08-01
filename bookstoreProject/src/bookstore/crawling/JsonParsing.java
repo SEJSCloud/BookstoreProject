@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -44,18 +43,6 @@ public class JsonParsing {
 				JSONObject jsonObject = (JSONObject)jsonArray.get(i);
 				System.out.println(jsonObject.get("title"));
 			}
-
-			//System.out.println((JSONObject)jsonObject.get("title"));
-//			String title = (String)jsonObject.get("title");
-//			int bookId = (int)jsonObject.get("bookId");
-//			int discountRate = (int)jsonObject.get("discountRate");
-//			String price = (String)jsonObject.get("price");
-//			int publisherId = (int)jsonObject.get("publisherId");
-			
-//			Iterator<String> iterator = jsonARRAY.iterator();
-//			while(iterator.hasNext()) {
-//				System.out.println(iterator.next());
-//			}
 			
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -65,9 +52,4 @@ public class JsonParsing {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String[] args) {
-		getJsonFile();
-	}
-
 }

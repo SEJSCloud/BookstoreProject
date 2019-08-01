@@ -27,8 +27,7 @@ public class TranslatorDAO {
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("TranslatorDAO.addquery"));
-			pstmt.setInt(1, translator.getTranslatorId());
-			pstmt.setString(2, translator.getTranslatorName());
+			pstmt.setString(1, translator.getTranslatorName());
 			
 			int result = pstmt.executeUpdate();
 		

@@ -15,7 +15,12 @@ public class BookDTO {
 	private String publishMonth;
 	private String price;
 	private int discountRate;
+<<<<<<< HEAD
 	private int publisherId; 
+=======
+	private int publisherId;
+	private String translatorName;
+>>>>>>> 677505e638b72f011ee2c40e06e4093feaca3157
 	
 	   @Override
 	   public String toString() {
