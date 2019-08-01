@@ -27,8 +27,7 @@ public class AuthorDAO {
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.addquery"));
-			pstmt.setInt(1, author.getAuthorId());
-			pstmt.setString(2, author.getAuthorName());
+			pstmt.setString(1, author.getAuthorName());
 			
 			int result = pstmt.executeUpdate();
 		
