@@ -1,22 +1,26 @@
 package bookstore.crawling;
-	
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import bookstore.model.dto.BookDTO;
-	
+import bookstore.service.BookstoreController;
+import net.sf.json.JSONArray;
+
+
 public class bookstoreCrawling {
-	
+
 	private static bookstoreCrawling instance = new bookstoreCrawling();
-	
+
 	public static bookstoreCrawling getInstance() {
 		return instance;
 	}
-	
+
 	Document doc = null;
 	Elements newsHeadlines = null;
 	Elements newsHeadlines1 = null;
@@ -24,13 +28,14 @@ public class bookstoreCrawling {
 	Elements newsHeadlines3 = null;
 	Elements newsHeadlines4 = null;
 	ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
+	JSONArray bookListJson;
 	ArrayList<String> titleArray = new ArrayList<String>();
 	ArrayList<String> publishMonthArray = new ArrayList<String>();
 	ArrayList<String> priceArray = new ArrayList<String>();
 	ArrayList<Integer> discountRateArray = new ArrayList<Integer>();
 	BookDTO book = new BookDTO();
-	
-	public ArrayList<BookDTO> getBookList() {
+
+	public JSONArray getBookList() {
 		for (int i = 1; i <= 10; i++) {
 			try {
 				doc = Jsoup.connect(
@@ -90,10 +95,10 @@ public class bookstoreCrawling {
 				int intDiscount = Integer.parseInt(stringDiscount);
 				BookDTO book = new BookDTO(0, stringTitle, thirdStringMass, stringPrice + "¿ø", intDiscount, 0);
 				bookList.add(book);
-
 			}
 		}
-		return bookList;
+		bookListJson = JSONArray.fromObject(bookList);
+		return bookListJson;
 	}
 
 	public ArrayList<String> getBookListTitle() {
@@ -255,5 +260,4 @@ public class bookstoreCrawling {
 		}
 		return discountRateArray;
 	}
-
 }

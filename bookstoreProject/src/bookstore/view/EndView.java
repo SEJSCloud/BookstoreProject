@@ -8,16 +8,6 @@ import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
 
 public class EndView {
-
-	// 모든 프로젝트 출력
-//	public static void allListView(ArrayList allProbonoProject) {
-//		int length = allProbonoProject.size();
-//		if (length != 0) {
-//			for (int index = 0; index < length; index++) {
-//				System.out.println("검색정보 " + (index + 1) + " - " + allProbonoProject.get(index));
-//			}
-//		}
-//	}
 	
 	
 	public static void bookListView(ArrayList<BookDTO> allBook) {

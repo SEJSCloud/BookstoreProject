@@ -20,11 +20,11 @@ public class BookDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}4
 
 	public static boolean addBook(BookDTO Book) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null; 
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.addquery"));

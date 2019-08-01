@@ -26,7 +26,7 @@ public class PublisherDAO {
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.addquery"));
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.addquery")); 
 			pstmt.setInt(1, publisher.getPublisherId());
 			pstmt.setString(2, publisher.getPublisherName());
 			
