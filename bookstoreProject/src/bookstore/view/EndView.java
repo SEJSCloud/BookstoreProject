@@ -8,6 +8,16 @@ import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
 
 public class EndView {
+
+	// 모든 프로젝트 출력
+//	public static void allListView(ArrayList allProbonoProject) {
+//		int length = allProbonoProject.size();
+//		if (length != 0) {
+//			for (int index = 0; index < length; index++) {
+//				System.out.println("검색정보 " + (index + 1) + " - " + allProbonoProject.get(index));
+//			}
+//		}
+//	}
 	
 	
 	public static void bookListView(ArrayList<BookDTO> allBook) {
@@ -100,22 +110,22 @@ public class EndView {
 	
 	public static void bookView(BookDTO book) {
 		System.out.println(book);
-		SuccessView.showSuccess("프로젝트 검색 성공");
+		SuccessView.showSuccess("책 검색 성공");
 	}
 
 	public static void translatorView(TranslatorDTO translator) {
 		System.out.println(translator);
-		SuccessView.showSuccess("프로보노 검색 성공");
+		SuccessView.showSuccess("번역가 검색 성공");
 	}
 
 	public static void publisherView(PublisherDTO publisher) {
 		System.out.println(publisher);
-		SuccessView.showSuccess("기부자 검색 성공");
+		SuccessView.showSuccess("출판사 검색 성공");
 	}
 
 	public static void authorView(AuthorDTO author) {
 		System.out.println(author);
-		SuccessView.showSuccess("수혜자 검색 성공");
+		SuccessView.showSuccess("저자 검색 성공");
 	}
 
 	// 예외 상황 출력

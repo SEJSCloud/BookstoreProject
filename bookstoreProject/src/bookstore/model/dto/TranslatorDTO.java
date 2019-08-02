@@ -13,4 +13,15 @@ public class TranslatorDTO {
 	private int translatorId;
 	private String translatorName;
 
+	
+	   @Override
+	   public String toString() {
+	      StringBuilder builder = new StringBuilder();
+	      builder.append("[translatorId : ");
+	      builder.append(translatorId);
+	      builder.append(", translatorName : ");
+	      builder.append(translatorName);
+	      builder.append("]\n");
+	      return builder.toString();
+	   }
 }

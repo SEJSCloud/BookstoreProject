@@ -12,5 +12,16 @@ public class PublisherDTO {
 	
 	private int publisherId;
 	private String publisherName;
+	
+	   @Override
+	   public String toString() {
+	      StringBuilder builder = new StringBuilder();
+	      builder.append("[publisherId : ");
+	      builder.append(publisherId);
+	      builder.append(", publisherName : ");
+	      builder.append(publisherName);
+	      builder.append("]\n");
+	      return builder.toString();
+	   }
 
 }

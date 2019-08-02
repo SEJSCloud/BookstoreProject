@@ -9,7 +9,6 @@ import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
 import bookstore.view.EndView;
 import bookstore.view.SuccessView;
-import net.sf.json.JSONArray;
 
 public class BookstoreController {
 
@@ -42,7 +41,7 @@ public class BookstoreController {
 	}
 
 	// 새로운 책 저장 로직
-	public void  addBook(JSONArray book) {
+	public void addBook(BookDTO book) {
 		try {
 			if(service.addBook(book) == true) {
 				SuccessView.showSuccess("새로운 책 저장 성공");
@@ -55,18 +54,6 @@ public class BookstoreController {
 		}
 	}
 	
-//	public void addTranslatorName(BookDTO book) {
-//		try {
-//			if(service.addTranslatorName(book) == true) {
-//				SuccessView.showSuccess("새로운 번역가이름 저장 성공");
-//			}else {
-//				EndView.showError("새로운 번역가이름 저장 실패");
-//			}
-//		} catch (SQLException s) {
-//			s.printStackTrace();
-//			EndView.showError("새로운 번역가이름 저장시 에러 발생");
-//		}
-//	}
 
 	// 책 수정 로직
 	public void updateBook(int bookId, String bookName) {
@@ -92,6 +79,38 @@ public class BookstoreController {
 		}
 	}
 	
+	public void authorDeleteBook(int authorId) {
+		try {
+			service.authorDeleteBook(authorId);
+			SuccessView.showSuccess("저자 ID로 책 삭제 성공");
+
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("저자 ID로 책 삭제시 에러 발생");
+		}
+	}
+	
+	public void publisherDeleteBook(int publisherId) {
+		try {
+			service.publisherDeleteBook(publisherId);
+			SuccessView.showSuccess("출판사 ID로 책 삭제 성공");
+
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("출판사 ID로 책 삭제시 에러 발생");
+		}
+	}
+	
+	public void translatorDeleteBook(int translatorId) {
+		try {
+			service.translatorDeleteBook(translatorId);
+			SuccessView.showSuccess("번역가 ID로 책 삭제 성공");
+
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("번역가 ID로 책 삭제시 에러 발생");
+		}
+	}
 	
 //**************************************************************
 

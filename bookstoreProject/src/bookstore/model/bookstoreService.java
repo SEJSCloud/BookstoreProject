@@ -8,7 +8,6 @@ import bookstore.model.dto.AuthorDTO;
 import bookstore.model.dto.BookDTO;
 import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
-import net.sf.json.JSONArray;
 
 public class bookstoreService {
 
@@ -59,6 +58,21 @@ public class bookstoreService {
 	public boolean deleteBook(int bookId) throws SQLException, NotExistException {
 		notExistbook(bookId);
 		return BookDAO.deleteBook(bookId);
+	}
+	
+	public boolean authorDeleteBook(int authorId) throws SQLException, NotExistException {
+		notExistbook(authorId);
+		return BookDAO.authorDeleteBook(authorId);
+	}
+	
+	public boolean publisherDeleteBook(int publisherId) throws SQLException, NotExistException {
+		notExistbook(publisherId);
+		return BookDAO.publisherDeleteBook(publisherId);
+	}
+	
+	public boolean translatorDeleteBook(int translatorId) throws SQLException, NotExistException {
+		notExistbook(translatorId);
+		return BookDAO.translatorDeleteBook(translatorId);
 	}
 
 	// ****************************************************************************************************
@@ -126,7 +140,8 @@ public class bookstoreService {
 		return TranslatorDAO.deleteTranslator(translatorId);
 	}
 
-	public TranslatorDTO getTranslator(int translatorId) throws SQLException {
+	public TranslatorDTO getTranslator(int translatorId) throws SQLException, NotExistException {
+		notExistTranslator(translatorId);
 		return TranslatorDAO.getTranslator(translatorId);
 	}
 
@@ -193,11 +208,6 @@ public class bookstoreService {
 	public ArrayList<String> getBookTranslatingInfo(int translatorId) throws SQLException, NotExistException {
 		notExistTranslator(translatorId);
 		return TranslatingDAO.getBookTranslatingInfo(translatorId);
-	}
-
-	public boolean addBook(JSONArray book) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

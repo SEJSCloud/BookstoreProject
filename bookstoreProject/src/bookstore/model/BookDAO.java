@@ -20,11 +20,11 @@ public class BookDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}4
+	}
 
 	public static boolean addBook(BookDTO Book) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt = null; 
+		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.addquery"));
@@ -32,9 +32,9 @@ public class BookDAO {
 			pstmt.setString(2, Book.getPublishMonth());
 			pstmt.setString(3, Book.getPrice());
 			pstmt.setInt(4, Book.getDiscountRate());
-			pstmt.setString(5, Book.getAuthorName());
-			pstmt.setString(6, Book.getTranslatorName());
-			pstmt.setString(7, Book.getPublisherName());
+			pstmt.setString(5, Book.getAuthorId());
+			pstmt.setString(6, Book.getTranslatorId());
+			pstmt.setString(7, Book.getPublisherId());
 			int result = pstmt.executeUpdate();
 
 			if (result == 1) {
@@ -76,6 +76,57 @@ public class BookDAO {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.deletequery"));
 			pstmt.setInt(1, bookId);
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
+	public static boolean authorDeleteBook(int authorId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.authordeletequery"));
+			pstmt.setInt(1, authorId);
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
+	public static boolean publisherDeleteBook(int publisherId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.publisherdeletequery"));
+			pstmt.setInt(1, publisherId);
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
+	public static boolean translatorDeleteBook(int translatorId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.translatordeletequery"));
+			pstmt.setInt(1, translatorId);
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
