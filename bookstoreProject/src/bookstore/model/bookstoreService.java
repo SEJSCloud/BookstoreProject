@@ -49,9 +49,9 @@ public class bookstoreService {
 //	}
 
 	// 기존 book 수정
-	public boolean updateBook(int bookId, String bookName) throws SQLException, NotExistException {
-		notExistbook(bookId);
-		return BookDAO.updateBook(bookId, bookName);
+	public boolean updateBook(int bookName, String PublishMonth) throws SQLException, NotExistException {
+		notExistbook(bookName);
+		return BookDAO.updateBook(PublishMonth, bookName);
 	}
 
 	// book 삭제
@@ -72,6 +72,10 @@ public class bookstoreService {
 
 	public boolean addAuthor(AuthorDTO author) throws SQLException {
 		return AuthorDAO.addAuthor(author);
+	}
+	
+	public boolean addAuthorName(AuthorDTO Author) throws SQLException {
+		return AuthorDAO.addAuthorName(Author);
 	}
 
 	public boolean updateAuthor(int authorId, String authorName) throws SQLException, NotExistException {
@@ -140,6 +144,10 @@ public class bookstoreService {
 
 	public boolean addPublisher(PublisherDTO publisher) throws SQLException {
 		return PublisherDAO.addPublisher(publisher);
+	}
+	
+	public boolean addPublisherName(PublisherDTO Publisher) throws SQLException {
+		return PublisherDAO.addPublisherName(Publisher);
 	}
 
 	public boolean updatePublisher(int publisherId, String publisherName) throws SQLException, NotExistException {

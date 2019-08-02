@@ -19,5 +19,7 @@
 --insert into probono_project values(probono_project_id_seq.nextval, '키다리아저씨 프로젝트', 'schweitzer', 'giver3', 'receivePeople3', '장학금지원');
 
 insert into translator select translator_id_seq.nextval, tname from (select distinct tname from book where tname is not null) where tname is not null;
+insert into author select author_id_seq.nextval, aname from (select distinct aname from book where aname is not null) where aname is not null;
+insert into publisher select publisher_id_seq.nextval, pname from (select distinct pname from book where pname is not null) where pname is not null;
 
 commit;

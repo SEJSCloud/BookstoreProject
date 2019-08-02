@@ -14,19 +14,20 @@ public class StartView {
 		BookstoreController controller = BookstoreController.getInstance();
 		bookstoreCrawling crawliing = bookstoreCrawling.getInstance();
 
-
 //		for (BookDTO a : crawliing.getBookList()) {
 //			controller.addBook(a);
 //		}
-//		for (AuthorDTO a : crawliing.getAuthorList()) {
-//			controller.addAuthor(a);
-//		}
-//		for (PublisherDTO a : crawliing.getPublisherList()) {
-//			controller.addPublisher(a);
-//		}
-		
+
 		for (TranslatorDTO a : crawliing.getTransLatorNameList()) {
 			controller.addTranslatorName(a);
+		}
+		
+		for (AuthorDTO a : crawliing.getAuthorList()) {
+			controller.addAuthorName(a);
+		}
+		
+		for (PublisherDTO a : crawliing.getPublisherList()) {
+			controller.addPublisherName(a);
 		}
 
 	}

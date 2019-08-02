@@ -15,8 +15,9 @@ public class BookDTO {
 	private String publishMonth;
 	private String price;
 	private int discountRate;
-	private int publisherId;
+	private String authorName;
 	private String translatorName;
+	private String publisherName;
 	
 	   @Override
 	   public String toString() {
@@ -29,13 +30,15 @@ public class BookDTO {
 	      builder.append(price);
 	      builder.append(", discountRate : ");
 	      builder.append(discountRate);
+	      builder.append(", authorName : ");
+	      builder.append(authorName);
+	      builder.append(", translatorName : ");
+	      builder.append(translatorName);
+	      builder.append(", publisherName : ");
+	      builder.append(publisherName);
 	      builder.append("]\n");
 	      return builder.toString();
 	   }
 
-	public BookDTO(String translatorName) {
-		super();
-		this.translatorName = translatorName;
-	}
 
 }

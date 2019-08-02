@@ -32,28 +32,9 @@ public class BookDAO {
 			pstmt.setString(2, Book.getPublishMonth());
 			pstmt.setString(3, Book.getPrice());
 			pstmt.setInt(4, Book.getDiscountRate());
-			pstmt.setString(5, Book.getTranslatorName());
-
-			int result = pstmt.executeUpdate();
-
-			if (result == 1) {
-				return true;
-			}
-		} finally {
-			DBUtil.close(con, pstmt);
-		}
-		return false;
-	}
-	
-	public static boolean addTranslatorName(BookDTO Book) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.updatetranslatornamequery"));
-			pstmt.setString(1, Book.getTranslatorName());
-			pstmt.setString(2, Book.getTranslatorName());
-
+			pstmt.setString(5, Book.getAuthorName());
+			pstmt.setString(6, Book.getTranslatorName());
+			pstmt.setString(7, Book.getPublisherName());
 			int result = pstmt.executeUpdate();
 
 			if (result == 1) {
@@ -67,15 +48,15 @@ public class BookDAO {
 
 	// 수정 로직
 	// 프로젝트 명으로 내용 수정하기
-	public static boolean updateBook(int bookId, String bookTitle) throws SQLException {
+	public static boolean updateBook(String PublishMonth, int bookId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
 
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.updatequery"));
-			pstmt.setString(1, bookTitle);
-			pstmt.setInt(2, bookId);
+			pstmt.setInt(1, bookId);
+			pstmt.setString(2, PublishMonth);
 
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
@@ -88,13 +69,13 @@ public class BookDAO {
 	}
 
 	// 삭제 로직
-	public static boolean deleteBook(int BookId) throws SQLException {
+	public static boolean deleteBook(int bookId) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(propertiesInfo.getProperty("BookDAO.deletequery"));
-			pstmt.setInt(1, BookId);
+			pstmt.setInt(1, bookId);
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				return true;
@@ -117,8 +98,8 @@ public class BookDAO {
 			pstmt.setInt(1, BookId);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				Book = new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),
-						rset.getInt(6), rset.getString(7));
+				Book = new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6) ,rset.getString(7), rset.getString(8));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -138,8 +119,8 @@ public class BookDAO {
 
 			list = new ArrayList<BookDTO>();
 			while (rset.next()) {
-				list.add(new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5),
-						rset.getInt(6), rset.getString(7)));
+				list.add(new BookDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6) ,rset.getString(7), rset.getString(8)));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);

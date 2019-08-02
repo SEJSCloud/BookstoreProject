@@ -39,6 +39,26 @@ public class PublisherDAO {
 		}
 		return false;
 	}
+	
+	public static boolean addPublisherName(PublisherDTO publisher) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("PublisherDAO.updatepublishernamequery"));
+			pstmt.setString(1, publisher.getPublisherName());
+			pstmt.setString(2, publisher.getPublisherName());
+			
+			int result = pstmt.executeUpdate();
+		
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
 
 	//수정 로직
 	// 프로젝트 명으로 내용 수정하기

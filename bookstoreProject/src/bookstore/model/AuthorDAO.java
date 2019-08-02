@@ -39,6 +39,26 @@ public class AuthorDAO {
 		}
 		return false;
 	}
+	
+	public static boolean addAuthorName(AuthorDTO Author) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.updateauthornamequery"));
+			pstmt.setString(1, Author.getAuthorName());
+			pstmt.setString(2, Author.getAuthorName());
+			
+			int result = pstmt.executeUpdate();
+		
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
 
 	//수정 로직
 	// 프로젝트 명으로 내용 수정하기

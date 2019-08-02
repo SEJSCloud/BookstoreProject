@@ -137,6 +137,19 @@ public class BookstoreController {
 			EndView.showError("저자 저장시 에러 발생");
 		}
 	}
+	
+	public void addAuthorName(AuthorDTO Author) {
+		try {
+			if(service.addAuthorName(Author) == true) {
+				SuccessView.showSuccess("새로운 저자 이름 저장 성공");
+			}else {
+				EndView.showError("새로운 저자 이름 저장 실패");
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+			EndView.showError("새로운 저자 이름 저장시 에러 발생");
+		}
+	}
 
 	// 저자 삭제 로직
 	public void deleteAuthor(int authorId) {
@@ -253,6 +266,19 @@ public class BookstoreController {
 		} catch (Exception s) {
 			s.printStackTrace();
 			EndView.showError("새로운 출판사 정보 저장시 에러 발생");
+		}
+	}
+	
+	public void addPublisherName(PublisherDTO Publisher) {
+		try {
+			if(service.addPublisherName(Publisher) == true) {
+				SuccessView.showSuccess("새로운 출판사 이름 저장 성공");
+			}else {
+				EndView.showError("새로운 출판사 이름 저장 실패");
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+			EndView.showError("새로운 출판사 이름 저장시 에러 발생");
 		}
 	}
 
