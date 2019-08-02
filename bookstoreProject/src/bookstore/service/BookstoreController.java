@@ -9,6 +9,7 @@ import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
 import bookstore.view.EndView;
 import bookstore.view.SuccessView;
+import net.sf.json.JSONArray;
 
 public class BookstoreController {
 
@@ -41,7 +42,7 @@ public class BookstoreController {
 	}
 
 	// 货肺款 氓 历厘 肺流
-	public void addBook(BookDTO book) {
+	public void  addBook(JSONArray book) {
 		try {
 			if(service.addBook(book) == true) {
 				SuccessView.showSuccess("货肺款 氓 历厘 己傍");

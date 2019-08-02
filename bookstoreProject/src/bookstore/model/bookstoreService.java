@@ -8,6 +8,7 @@ import bookstore.model.dto.AuthorDTO;
 import bookstore.model.dto.BookDTO;
 import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
+import net.sf.json.JSONArray;
 
 public class bookstoreService {
 
@@ -192,6 +193,11 @@ public class bookstoreService {
 	public ArrayList<String> getBookTranslatingInfo(int translatorId) throws SQLException, NotExistException {
 		notExistTranslator(translatorId);
 		return TranslatingDAO.getBookTranslatingInfo(translatorId);
+	}
+
+	public boolean addBook(JSONArray book) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

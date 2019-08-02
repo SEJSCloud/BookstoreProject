@@ -1,6 +1,8 @@
--- 재능 기부자
+
 DROP TABLE book cascade constraint;
 
+<<<<<<< HEAD
+=======
 -- 재능 수혜자
 DROP TABLE author cascade constraint;
 --
@@ -9,6 +11,7 @@ DROP TABLE publisher cascade constraint;
 --
 -- 재능기부 프로젝트
 DROP TABLE translator cascade constraint;
+>>>>>>> 677505e638b72f011ee2c40e06e4093feaca3157
 
 DROP SEQUENCE book_id_seq;
 DROP SEQUENCE publisher_id_seq;
@@ -26,6 +29,8 @@ CREATE TABLE book (
        pname                	VARCHAR2(200) 
 );
 
+<<<<<<< HEAD
+=======
 CREATE TABLE author (
        author_id     		NUMBER PRIMARY KEY ,
        aname                		VARCHAR2(300) NOT NULL
@@ -52,6 +57,7 @@ CREATE TABLE translator (
 --       project_content      			VARCHAR2(100) NOT NULL
 --);
 
+>>>>>>> 677505e638b72f011ee2c40e06e4093feaca3157
 CREATE SEQUENCE book_id_seq;
 CREATE SEQUENCE publisher_id_seq;
 CREATE SEQUENCE author_id_seq;
