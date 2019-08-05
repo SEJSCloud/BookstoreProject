@@ -1,4 +1,4 @@
-BookStor
+BookStoreProject
 ==============
 ### crawling 개발중
 
