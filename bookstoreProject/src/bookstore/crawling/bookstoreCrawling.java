@@ -56,7 +56,7 @@ public class bookstoreCrawling {
 						+ ") > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1)");
 				String ifStringMass = newsHeadlines.text();
 				String ifSecondStringMass = ifStringMass.substring(0, ifStringMass.indexOf("]") + 1);
-				if (newsHeadlines.text().contains("[") && ifSecondStringMass.length() > 5) {
+				if (newsHeadlines.text().contains("[") || newsHeadlines.text().contains("[<") && ifSecondStringMass.length() > 5) {
 					a = a + 1;
 					b = b + 1;
 					c = c + 1;
@@ -65,7 +65,7 @@ public class bookstoreCrawling {
 				newsHeadlines1 = doc.select("#Myform > div:nth-child(" + j
 						+ ") > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child("
 						+ b + ") > a > b");
-
+//				#Myform > div:nth-child(14) > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a > b
 				newsHeadlines2 = doc.select("#Myform > div:nth-child(" + j
 						+ ") > table > tbody > tr > td:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(1) > div:nth-child(1) > ul > li:nth-child("
 						+ a + ")");

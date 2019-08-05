@@ -89,6 +89,10 @@ public class bookstoreService {
 		return AuthorDAO.addAuthor(author);
 	}
 	
+	public boolean addAuthor2() throws SQLException {
+		return AuthorDAO.addAuthor2();
+	}
+	
 	public boolean addAuthorName(AuthorDTO Author) throws SQLException {
 		return AuthorDAO.addAuthorName(Author);
 	}
@@ -124,6 +128,10 @@ public class bookstoreService {
 
 	public boolean addTranslator(TranslatorDTO translator) throws SQLException {
 		return TranslatorDAO.addTranslator(translator);
+	}
+	
+	public boolean addTranslator2() throws SQLException {
+		return TranslatorDAO.addTranslator2();
 	}
 	
 	public boolean addTranslatorName(TranslatorDTO translator) throws SQLException {
@@ -162,6 +170,10 @@ public class bookstoreService {
 		return PublisherDAO.addPublisher(publisher);
 	}
 	
+	public boolean addPublisher2() throws SQLException {
+		return PublisherDAO.addPublisher2();
+	}
+	
 	public boolean addPublisherName(PublisherDTO Publisher) throws SQLException {
 		return PublisherDAO.addPublisherName(Publisher);
 	}
@@ -184,30 +196,6 @@ public class bookstoreService {
 
 	public ArrayList<PublisherDTO> getAllPublishers() throws SQLException {
 		return PublisherDAO.getAllPublishers();
-	}
-
-	// ****************************************************************************************************
-
-	public ArrayList<String> getAuthorWriteInfo(int bookId) throws SQLException, NotExistException {
-		notExistbook(bookId);
-		return WritingDAO.getAuthorWriteInfo(bookId);
-	}
-
-	public ArrayList<String> getBookWriteInfo(int authorId) throws SQLException, NotExistException {
-		notExistAuthor(authorId);
-		return WritingDAO.getBookWriteInfo(authorId);
-	}
-
-	// ****************************************************************************************************
-
-	public ArrayList<String> getAuthoTranslatingInfo(int bookId) throws SQLException, NotExistException {
-		notExistAuthor(bookId);
-		return TranslatingDAO.getAuthoTranslatingInfo(bookId);
-	}
-
-	public ArrayList<String> getBookTranslatingInfo(int translatorId) throws SQLException, NotExistException {
-		notExistTranslator(translatorId);
-		return TranslatingDAO.getBookTranslatingInfo(translatorId);
 	}
 
 }

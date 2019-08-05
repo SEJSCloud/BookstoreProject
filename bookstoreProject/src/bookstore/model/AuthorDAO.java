@@ -40,6 +40,24 @@ public class AuthorDAO {
 		return false;
 	}
 	
+	public static boolean addAuthor2() throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(propertiesInfo.getProperty("AuthorDAO.addquery2"));
+			
+			int result = pstmt.executeUpdate();
+		
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
 	public static boolean addAuthorName(AuthorDTO Author) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;

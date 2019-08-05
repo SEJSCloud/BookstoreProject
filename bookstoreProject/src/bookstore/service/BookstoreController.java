@@ -8,6 +8,7 @@ import bookstore.model.dto.BookDTO;
 import bookstore.model.dto.PublisherDTO;
 import bookstore.model.dto.TranslatorDTO;
 import bookstore.view.EndView;
+import bookstore.view.FailView;
 import bookstore.view.SuccessView;
 
 public class BookstoreController {
@@ -46,7 +47,7 @@ public class BookstoreController {
 			if(service.addBook(book) == true) {
 				SuccessView.showSuccess("새로운 책 저장 성공");
 			}else {
-				EndView.showError("새로운 책 저장 실패");
+				FailView.showFail("새로운 책 저장 실패");
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -158,12 +159,23 @@ public class BookstoreController {
 		}
 	}
 	
+	public void addAuthor2() {
+		try {
+			service.addAuthor2();
+			SuccessView.showSuccess("저자 이름 중복제거 후 insert 성공");
+
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("저자 이름 중복제거 후 insert시 에러 발생");
+		}
+	}
+	
 	public void addAuthorName(AuthorDTO Author) {
 		try {
 			if(service.addAuthorName(Author) == true) {
 				SuccessView.showSuccess("새로운 저자 이름 저장 성공");
 			}else {
-				EndView.showError("새로운 저자 이름 저장 실패");
+				FailView.showFail("새로운 저자 이름 저장 실패");
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -207,6 +219,17 @@ public class BookstoreController {
 	}
 
 	// 새로운 재능 번역가 저장 로직
+	public void addTranslator2() {
+		try {
+			service.addTranslator2();
+			SuccessView.showSuccess("번역가 이름 중복제거 후 insert 성공");
+
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("번역가 이름 중복제거 후 insert시 에러 발생");
+		}
+	}
+	
 	public void addTranslator(TranslatorDTO translator) {
 		try {
 			service.addTranslator(translator);
@@ -223,7 +246,7 @@ public class BookstoreController {
 			if(service.addTranslatorName(translator) == true) {
 				SuccessView.showSuccess("새로운 번역가이름 저장 성공");
 			}else {
-				EndView.showError("새로운 번역가이름 저장 실패");
+				FailView.showFail("새로운 번역가이름 저장 실패");
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -289,12 +312,23 @@ public class BookstoreController {
 		}
 	}
 	
+	public void addPublisher2() {
+		try {
+			service.addPublisher2();
+			SuccessView.showSuccess("출판사 이름 중복제거 후 insert 성공");
+
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("출판사 이름 중복제거 후 insert시 에러 발생");
+		}
+	}
+	
 	public void addPublisherName(PublisherDTO Publisher) {
 		try {
 			if(service.addPublisherName(Publisher) == true) {
 				SuccessView.showSuccess("새로운 출판사 이름 저장 성공");
 			}else {
-				EndView.showError("새로운 출판사 이름 저장 실패");
+				FailView.showFail("새로운 출판사 이름 저장 실패");
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -324,51 +358,6 @@ public class BookstoreController {
 			s.printStackTrace();
 			EndView.showError("출판사 정보 삭제시 에러 발생");
 		}
-	}
-	
-//**************************************************************
-	
-	public void getAuthorWriteInfo (int bookId) {
-		try {
-			EndView.authorWriteListView(service.getAuthorWriteInfo(bookId));
-		} catch (Exception e) {
-			e.printStackTrace();
-			EndView.showError("책의 저자 검색시 오류발생 ");
-		}
-		
-	}
-	
-	public void getBookWriteInfo (int authorId) {
-		try {
-			EndView.bookWriteListView(service.getBookWriteInfo(authorId));
-		} catch (Exception e) {
-			e.printStackTrace();
-			EndView.showError("저자의 책 검색시 오류발생 ");
-		}
-		
-	}
-	
-	
-//**************************************************************
-	
-	public void getAuthoTranslatingInfo (int bookId) {
-		try {
-			EndView.authorTranslatingListView(service.getAuthoTranslatingInfo(bookId));
-		} catch (Exception e) {
-			e.printStackTrace();
-			EndView.showError("책의 번역가 검색시 오류발생 ");
-		}
-		
-	}
-	
-	public void getBookTranslatingInfo (int translatorId) {
-		try {
-			EndView.bookTranslatingListView(service.getBookTranslatingInfo(translatorId));
-		} catch (Exception e) {
-			e.printStackTrace();
-			EndView.showError("번역가의 책 검색시 오류발생 ");
-		}
-		
 	}
 
 }
