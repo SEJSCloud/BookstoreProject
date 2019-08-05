@@ -8,7 +8,7 @@ Mini Project : BookStoreProject
 > DBMS : Oracle <br>
  > Crawling Site : 알라딘(https://www.aladin.co.kr)
 
-### 2. Project Documenta
+### 2. Project Document
 
 > ppt자료 : bookstoreProject.pdf <br>
 > Class Diagram : ERDiagram -bookStoreProject.png <br>
