@@ -11,7 +11,7 @@ Mini Project : BookStoreProject
 ### 2. Project Document
 
 > ppt자료 : bookstoreProject.pdf <br>
-> Class Diagram : ERDiagram -bookStoreProject.png <br>
+> Entitiy Diagram : ERDiagram -bookStoreProject.png <br>
 > ERMaster : ERMaster -bookStoreProject.png 
  
 
